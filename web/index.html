@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>BI X Release Countdown</title>
+<style>
+body {
+  color: #333;
+  text-align: center;
+  background: #eee;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+h1 {
+  color: #333;
+  font-size: 6vw;
+  margin: 15vh 0px 10vh;
+  font-weight: 500;
+}
+h2 {
+  color: #333;
+  font-size: 4vw;
+  font-weight: 500;
+}
+label {
+  font-size: 2vw;
+}
+input {
+  font-size: 2vw;
+}
+button {
+  font-size: 2vw;
+}
+#clockdiv {
+  font-family: sans-serif;
+  color: #333;
+  display: inline-block;
+  text-align: center;
+  font-size: 5vw;
+}
+#clockdiv > div {
+  padding: 2vh;
+  border-radius: 1vh;
+  background: #ccc;
+  display: inline-block;
+}
+#clockdiv div > span {
+  padding: 2vh;
+  border-radius: 1vh;
+  background: #009e99;
+  color: #fff;
+  display: inline-block;
+}
+smalltext {
+  padding-top: 5px;
+}
+.final {
+  padding: 0.5vh;
+  font-size: 5vw;
+}
+.inputelement {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+/*
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111;
+    color: #ddd;
+  }
+  h1, h2 {
+    color: #ddd;
+  }
+  #clockdiv {
+    color: #ddd;
+  }
+  #clockdiv > div {
+    background: #333;
+  }
+  #clockdiv div > span {
+    background: #009e99;
+    color: #fff;
+  }
+}
+*/
+
+</style>
+</head>
+<body>
+<div id="setup">
+  <h1>Setup your countdown:</h1>
+
+  <div class="inputelement">
+    <label for="cntdate">Date:</label><br/>
+    <input id="cntdate" type="date" min="2021-04-16"/>
+  </div>
+
+  <div class="inputelement">
+    <label for="cnttime">Time: (UTC)</label><br/>
+    <input id="cnttime" type="time"/>
+  </div>
+
+  <div class="inputelement">
+    <label for="cntname">Project / Release Name:</label><br/>
+    <input id="cntname" type="text" placeholder="next release" />
+  </div>
+
+  <div class="inputelement">
+    <label for="cntdone">Completed Message:</label><br/>
+    <input id="cntdone" type="text" placeholder="Get it out!" />
+  </div>
+
+  <div class="inputelement">
+    <button id="setConfig">Start countdown...</button>
+  </div>
+</div>
+
+<div id="countdown">
+  <h1>Time until <span id="projectname">???</span>:</h1>
+  <div id="clockdiv">
+    <div>
+      <span class="days" id="day">?</span>
+      <div class="smalltext">Days</div>
+    </div>
+    <div>
+      <span class="hours" id="hour">?</span>
+      <div class="smalltext">Hours</div>
+    </div>
+    <div>
+      <span class="minutes" id="minute">?</span>
+      <div class="smalltext">Minutes</div>
+    </div>
+    <div>
+      <span class="seconds" id="second">?</span>
+      <div class="smalltext">Seconds</div>
+    </div>
+  </div>
+  <p id="doneMessage" class="final"></p>
+  <button id="restart">Set a new countdown...</button>
+</div>
+<script>
+
+var intervalReference = null;
+document.getElementById("countdown").style.display = 'none';
+document.getElementById("setup").style.display = 'none';
+
+// functions
+
+const getEmptyConfigObject = () => {
+  return {
+    project: 'next release',
+    doneMsg: 'Get it out!',
+    year: new Date().getYear(),
+    month: new Date().getMonth() + 1,
+    day: new Date().getDate(),
+    hour: new Date().getHours(),
+    minute: 0,
+  }
+}
+
+const setConfigFromUrl = (url) => {
+  let newConfig = getEmptyConfigObject();
+
+
+  // project name
+  let projName = url.searchParams.get('p');
+  if (projName !== null) {
+    newConfig.project = projName;
+  }
+
+  let cntDoneMessage = url.searchParams.get('msg');
+  if (cntDoneMessage !== null) {
+    newConfig.doneMsg = cntDoneMessage;
+  }
+
+  let year = url.searchParams.get('y');
+  if (year !== null) {
+    newConfig.year = year;
+  }
+
+  let month = url.searchParams.get('m');
+  if (month !== null) {
+    newConfig.month = month;
+  }
+
+  let day = url.searchParams.get('d');
+  if (day !== null) {
+    newConfig.day = day;
+  }
+
+  let hour = url.searchParams.get('h');
+  if (hour !== null) {
+    newConfig.hour = hour;
+  }
+
+  let minute = url.searchParams.get('min');
+  if (minute !== null) {
+    newConfig.minute = minute;
+  }
+
+  // save new time for deadline
+  localStorage.setItem('config', JSON.stringify(newConfig));
+  // remove set command from the url box
+  window.location.href = window.location.origin.concat(window.location.pathname);
+}
+
+const initSetupUi = () => {
+  document.getElementById("countdown").style.display = 'none';
+  // get date of today
+  const isYear = new Date().getFullYear();
+  let isMonth = new Date().getUTCMonth() + 1;
+  if (isMonth < 10) {isMonth = '0'.concat(isMonth);}
+  let isDay = new Date().getDate();
+  if (isDay < 10) {isDay = '0'.concat(isDay);}
+  // set min date for the UI
+  document.getElementById("cntdate").min = ''.concat(isYear, '-', isMonth, '-', isDay);
+  // add listener for the save / apply config button
+  document.getElementById("setConfig").addEventListener('click', saveAndApplyConfig);
+  // show UI
+  document.getElementById("setup").style.display = 'block';
+}
+
+const saveAndApplyConfig = () => {
+  // delete old timer
+  clearInterval(intervalReference);
+  // read input fields
+  const projectNameValue = document.getElementById("cntname").value;
+  const finishedTextValue = document.getElementById("cntdone").value;
+  const deadlineDateValue = document.getElementById("cntdate").value;
+  const deadlineTimeValue = document.getElementById("cnttime").value;
+  // init missing check
+  let hasMissing = false;
+  let newConfig = getEmptyConfigObject();
+  if (deadlineDateValue !== '') {
+    // split date
+    const dateParts = deadlineDateValue.split('-');
+    // save date in config
+    newConfig.year = parseInt(dateParts[0]);
+    newConfig.month = parseInt(dateParts[1]);
+    newConfig.day = parseInt(dateParts[2]);
+  } else {
+    hasMissing = true;
+    // ToDo: show error
+  }
+
+  if (deadlineTimeValue !== '') {
+    // split time
+    const timeParts = deadlineTimeValue.split(':');
+    // save time in config
+    newConfig.hour = parseInt(timeParts[0]);
+    newConfig.minute = parseInt(timeParts[1]);
+  } else {
+    hasMissing = true;
+    // ToDo: show error
+  }
+
+  if (!hasMissing) {
+    // optional values
+    if (projectNameValue.trim() !== '') {
+      newConfig.project = projectNameValue;
+    }
+    if (finishedTextValue.trim() !== '') {
+      newConfig.doneMsg = finishedTextValue;
+    }
+    // save config
+    localStorage.setItem('config', JSON.stringify(newConfig));
+    // switch to countdown view
+    document.getElementById("setup").style.display = 'none';
+    startCountdown(newConfig);
+  } else {
+    alert('Missing inputs...');
+  }
+}
+
+const startCountdown = (configObject) => {
+  document.getElementById("projectname").innerHTML = configObject.project;
+  document.getElementById("doneMessage").style.visibility = 'hidden';
+  document.getElementById("doneMessage").innerHTML = configObject.doneMsg;
+  document.getElementById("countdown").style.display = 'block';
+  const deadline = new Date(Date.UTC(configObject.year, configObject.month - 1, configObject.day, configObject.hour, configObject.minute)).getTime();
+  intervalReference = setInterval(function() {
+    let now = new Date().getTime();
+    let t = deadline - now;
+    let days = Math.floor(t / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((t % (1000 * 60)) / 1000);
+    document.getElementById("day").innerHTML = days ;
+    document.getElementById("hour").innerHTML = hours;
+    document.getElementById("minute").innerHTML = minutes;
+    document.getElementById("second").innerHTML = seconds;
+    if (t <= 0) {
+      clearInterval(intervalReference);
+      document.getElementById("doneMessage").style.visibility = 'visible';
+      document.getElementById("day").innerHTML ='0';
+      document.getElementById("hour").innerHTML ='0';
+      document.getElementById("minute").innerHTML ='0';
+      document.getElementById("second").innerHTML = '0';
+    }
+  }, 500);
+}
+
+const newCountdown = () => {
+  clearInterval(intervalReference);
+  document.getElementById("countdown").style.display = 'none';
+  initSetupUi();
+}
+
+
+
+// init part
+document.getElementById("restart").addEventListener('click', newCountdown);
+// set new config part
+var url = new URL(window.location);
+if (url.searchParams.get('a') === 'set') {
+  // time / settings should be defined
+  setConfigFromUrl(url);
+  /*
+  ?a=set&h=10&min=0&d=28&m=5&y=2021&p=Medicoach%20Release%201&msg=GO%20LIVE!
+  */
+}
+
+// (try to) load from local storage
+var savedConfig = localStorage.getItem('config');
+if (savedConfig === null) {
+  // reminder to show how to set & UI to set it
+  initSetupUi();
+} else {
+  startCountdown(JSON.parse(savedConfig));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

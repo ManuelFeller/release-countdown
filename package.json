@@ -1,0 +1,10 @@
+{
+  "name": "release_countdown",
+  "version": "1.0.0",
+  "description": "A small website that provides you with a release countdown",
+  "scripts": {
+    "serve": "npx http-server ./web/"
+  },
+  "author": "Manuel Feller",
+  "license": "MIT"
+}
