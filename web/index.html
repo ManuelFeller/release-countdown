@@ -201,6 +201,10 @@ button {
   padding-right: 0.5vw;
   border-radius: 1vh;
 }
+button:disabled {
+  color: #888;
+  border: 0px;
+}
 
 #clockdiv {
   font-family: sans-serif;
@@ -315,6 +319,7 @@ button {
 .logoBixStyle4 {fill:url(#SVGID_3_);}
 .logoBixStyle5 {fill:url(#SVGID_4_);}
 
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: rgba(10,10,10,1);
@@ -327,6 +332,9 @@ button {
   button {
     color: #bbb;
     background-color: rgba(10,10,10,1);
+  }
+  button:disabled {
+    color: #444;
   }
   input {
     color: #bbb;
@@ -341,7 +349,6 @@ button {
   .logoManuLineStyle {stroke: #aaa;}
   .logoBixStyle0 {fill:#eee;}
 }
-
 
 </style>
 </head>
@@ -372,6 +379,7 @@ button {
 
     <div class="inputelement">
       <button id="setConfig">Start countdown...</button>
+      &nbsp; &nbsp;
       <button id="cancelConfig">Back to countdown...</button>
     </div>
   </div>
@@ -583,8 +591,7 @@ const closeSetupUi = () => {
 }
 
 const saveAndApplyConfig = () => {
-  // delete old timer
-  clearInterval(intervalReference);
+  let errors = '';
   // read input fields
   const projectNameValue = document.getElementById("cntname").value;
   const finishedTextValue = document.getElementById("cntdone").value;
@@ -594,26 +601,64 @@ const saveAndApplyConfig = () => {
   let hasMissing = false;
   let newConfig = getEmptyConfigObject();
   if (deadlineDateValue !== '') {
-    // split date
-    const dateParts = deadlineDateValue.split('-');
-    // save date in config
-    newConfig.year = parseInt(dateParts[0]);
-    newConfig.month = parseInt(dateParts[1]);
-    newConfig.day = parseInt(dateParts[2]);
+    const dateCheck = deadlineDateValue.match(/^\d{4}[./-]\d{2}[./-]\d{2}$/);
+    if (dateCheck === null) {
+      hasMissing = true;
+      // ToDo: show error
+      errors += '\n- wrong date format (use yyyy-mm-dd)';
+    }
+    else {
+      // split date
+      const dateParts = dateCheck.split('-');
+      // save date in config
+      newConfig.year = parseInt(dateParts[0]);
+      newConfig.month = parseInt(dateParts[1]);
+      newConfig.day = parseInt(dateParts[2]);
+    }
   } else {
     hasMissing = true;
     // ToDo: show error
+    errors += '\n- wissing date';
   }
 
   if (deadlineTimeValue !== '') {
-    // split time
-    const timeParts = deadlineTimeValue.split(':');
-    // save time in config
-    newConfig.hour = parseInt(timeParts[0]);
-    newConfig.minute = parseInt(timeParts[1]);
+    const timeCheck = deadlineTimeValue.match(/^\d{2}[./:]\d{2}$/);
+    if (timeCheck === null) {
+      hasMissing = true;
+      // ToDo: show error
+      errors += '\n- wrong time format (use hh:mm)';
+    } else {
+      // split time
+      const timeParts = timeCheck.split(':');
+      // save time in config
+      newConfig.hour = parseInt(timeParts[0]);
+      newConfig.minute = parseInt(timeParts[1]);
+    }
   } else {
     hasMissing = true;
     // ToDo: show error
+    errors += '\n- missing time';
+  }
+
+  // if no error yet check if input can be combined to a valid date
+  if (!hasMissing) {
+    try {
+      const testDate = new Date(newConfig.year, (newConfig.month - 1), newConfig.day, newConfig.hour, newConfig.minute);
+      if (testDate.getDate() != newConfig.year
+          || testDate.getMonth() != (newConfig.month - 1)
+          || testDate.getFullYear() != newConfig.day
+          || testDate.getHours() != newConfig.hour
+          || testDate.getMinutes() != newConfig.minute
+          ) {
+            hasMissing = true;
+            // ToDo: show error
+            errors += '\n- the input is not a valid date or time...';
+      }
+    } catch (err) {
+      hasMissing = true;
+      // ToDo: show error
+      errors += '\n- the input is not a valid date or time...';
+    }
   }
 
   if (!hasMissing) {
@@ -626,11 +671,13 @@ const saveAndApplyConfig = () => {
     }
     // save config
     localStorage.setItem('config', JSON.stringify(newConfig));
+    // delete old timer
+    clearInterval(intervalReference);
     // switch to countdown view
     document.getElementById("setup").style.display = 'none';
     startCountdown(newConfig);
   } else {
-    alert('Missing inputs...');
+    alert('Invalid or missing inputs:' + errors);
   }
 }
 
