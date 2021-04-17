@@ -2,18 +2,183 @@
 <html>
 <head>
 <title>BI X Release Countdown</title>
+
 <style>
+/* titillium-web-200 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 200;
+  src: url('fonts/titillium-web-v9-latin-200.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-200.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-200.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-200.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-200.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-200.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-300 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: url('fonts/titillium-web-v9-latin-300.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-300.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-300.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-200italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 200;
+  src: url('fonts/titillium-web-v9-latin-200italic.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-200italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-200italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-200italic.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-200italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-200italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-300italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 300;
+  src: url('fonts/titillium-web-v9-latin-300italic.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-300italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-300italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-300italic.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-300italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-300italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-regular - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/titillium-web-v9-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-regular.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/titillium-web-v9-latin-italic.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-italic.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-600 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 600;
+  src: url('fonts/titillium-web-v9-latin-600.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-600.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-600.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-600italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 600;
+  src: url('fonts/titillium-web-v9-latin-600italic.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-600italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-600italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-600italic.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-600italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-600italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-700italic - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 700;
+  src: url('fonts/titillium-web-v9-latin-700italic.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-700italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-700italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-700italic.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-700italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-700italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-700 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/titillium-web-v9-latin-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-700.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* titillium-web-900 - latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 900;
+  src: url('fonts/titillium-web-v9-latin-900.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('fonts/titillium-web-v9-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/titillium-web-v9-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/titillium-web-v9-latin-900.woff') format('woff'), /* Modern Browsers */
+       url('fonts/titillium-web-v9-latin-900.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('fonts/titillium-web-v9-latin-900.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
+}
+
+/* page styles */
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Titillium Web",sans-serif;
+}
+html {
+  height: 100%;
+}
 body {
   color: #333;
   text-align: center;
   background: #eee;
-  font-family: sans-serif;
+  background: linear-gradient(125deg, rgba(234,234,234,1) 0%, rgba(210,210,210,1) 100%);
   font-weight: 100;
+  height: 100%;
 }
 h1 {
   color: #333;
   font-size: 6vw;
-  margin: 15vh 0px 10vh;
   font-weight: 500;
 }
 h2 {
@@ -29,38 +194,123 @@ input {
 }
 button {
   font-size: 2vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  border-radius: 1vh;
 }
+
 #clockdiv {
   font-family: sans-serif;
   color: #333;
   display: inline-block;
   text-align: center;
-  font-size: 5vw;
+  font-size: 3vw;
 }
 #clockdiv > div {
-  padding: 2vh;
   border-radius: 1vh;
   background: #ccc;
   display: inline-block;
+  width: 20vw;
+  padding-bottom: 1vh;
 }
 #clockdiv div > span {
-  padding: 2vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
   border-radius: 1vh;
-  background: #009e99;
+  margin-bottom: 1vh;
+  font-size: 5vw;
+  font-weight: 600;
+  width: 100%;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='none' viewBox='0 0 1 1' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-color='%23fff' stop-opacity='0'%3E%3C/stop%3E%3Cstop offset='1' stop-color='%23fff' stop-opacity='1'%3E%3C/stop%3E%3C/linearGradient%3E%3Cmask id='m'%3E%3Crect x='0' y='0' width='1' height='1' fill='url(%23g)'%3E%3C/rect%3E%3C/mask%3E%3ClinearGradient id='a' gradientTransform='rotate(90)'%3E%3Cstop offset='0' stop-color='%2375B843'%3E%3C/stop%3E%3Cstop offset='1' stop-color='%23E71C77'%3E%3C/stop%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientTransform='rotate(90)'%3E%3Cstop offset='0' stop-color='%23003D7C'%3E%3C/stop%3E%3Cstop offset='1' stop-color='%2334AED6'%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' width='1' height='1' fill='url(%23a)' mask='url(%23m)'%3E%3C/rect%3E%3Crect x='0' y='0' width='1' height='1' fill='url(%23b)' mask='url(%23m)' transform='translate(1,1) rotate(180)'%3E%3C/rect%3E%3C/svg%3E");
+  background-size: 100% 100%;
   color: #fff;
   display: inline-block;
 }
-smalltext {
-  padding-top: 5px;
+.smalltext {
+  font-weight: 400;
 }
 .final {
-  padding: 0.5vh;
   font-size: 5vw;
 }
 .inputelement {
   padding-top: 1vh;
   padding-bottom: 1vh;
 }
+.fullSize {
+  height: 100%;
+}
+
+.countdownViewLayout {
+  display: grid;
+  grid-template-rows: 25% auto 15% 5vw;
+  height: 100%;
+}
+.countdownViewRowOne {
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.countdownViewRowTwo {
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.countdownViewRowThree {
+  grid-row: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.countdownViewRowFour {
+  grid-row: 4;
+  display: grid;
+  grid-template-columns: 10vw auto auto 10vw;
+}
+
+.countdownViewFooterColumnOne {
+  grid-column: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.countdownViewFooterColumnTwo {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.countdownViewFooterColumnThree {
+  grid-column: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.countdownViewFooterColumnFour {
+  grid-column: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoHolderManu {
+  padding-top: 0.35vw;
+  width: 4vw;
+}
+.logoHolderBix {
+  padding-top: 0.35vw;
+  width: 5vw;
+}
+
+/* svg styles */
+.logoManuLineStyle {fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 10px;}
+.logoBixStyle0 {fill:#2E3335;}
+.logoBixStyle1 {fill:url(#SVGID_1_);}
+.logoBixStyle2 {fill:url(#SVGID_2_);}
+.logoBixStyle3 {fill:#C2DFF0;}
+.logoBixStyle4 {fill:url(#SVGID_3_);}
+.logoBixStyle5 {fill:url(#SVGID_4_);}
 /*
 @media (prefers-color-scheme: dark) {
   body {
@@ -86,56 +336,152 @@ smalltext {
 </style>
 </head>
 <body>
-<div id="setup">
-  <h1>Setup your countdown:</h1>
+<div class="fullSize">
+  <div id="setup">
+    <h1>Setup your countdown:</h1>
 
-  <div class="inputelement">
-    <label for="cntdate">Date:</label><br/>
-    <input id="cntdate" type="date" min="2021-04-16"/>
-  </div>
-
-  <div class="inputelement">
-    <label for="cnttime">Time: (UTC)</label><br/>
-    <input id="cnttime" type="time"/>
-  </div>
-
-  <div class="inputelement">
-    <label for="cntname">Project / Release Name:</label><br/>
-    <input id="cntname" type="text" placeholder="next release" />
-  </div>
-
-  <div class="inputelement">
-    <label for="cntdone">Completed Message:</label><br/>
-    <input id="cntdone" type="text" placeholder="Get it out!" />
-  </div>
-
-  <div class="inputelement">
-    <button id="setConfig">Start countdown...</button>
-  </div>
-</div>
-
-<div id="countdown">
-  <h1>Time until <span id="projectname">???</span>:</h1>
-  <div id="clockdiv">
-    <div>
-      <span class="days" id="day">?</span>
-      <div class="smalltext">Days</div>
+    <div class="inputelement">
+      <label for="cntdate">Date:</label><br/>
+      <input id="cntdate" type="date" min="2021-04-16"/>
     </div>
-    <div>
-      <span class="hours" id="hour">?</span>
-      <div class="smalltext">Hours</div>
+
+    <div class="inputelement">
+      <label for="cnttime">Time: (UTC)</label><br/>
+      <input id="cnttime" type="time"/>
     </div>
-    <div>
-      <span class="minutes" id="minute">?</span>
-      <div class="smalltext">Minutes</div>
+
+    <div class="inputelement">
+      <label for="cntname">Project / Release Name:</label><br/>
+      <input id="cntname" type="text" placeholder="next release" />
     </div>
-    <div>
-      <span class="seconds" id="second">?</span>
-      <div class="smalltext">Seconds</div>
+
+    <div class="inputelement">
+      <label for="cntdone">Completed Message:</label><br/>
+      <input id="cntdone" type="text" placeholder="Get it out!" />
+    </div>
+
+    <div class="inputelement">
+      <button id="setConfig">Start countdown...</button>
+      <button id="cancelConfig">Back to countdown...</button>
     </div>
   </div>
-  <p id="doneMessage" class="final"></p>
-  <button id="restart">Set a new countdown...</button>
+
+  <div id="countdown" class="countdownViewLayout">
+    <div class="countdownViewRowOne">
+      <h1>Time until <span id="projectname">???</span>:</h1>
+    </div>
+    <div class="countdownViewRowTwo">
+      <div id="clockdiv">
+        <div>
+          <span class="days" id="day">?</span>
+          <div class="smalltext">Days</div>
+        </div>
+        <div>
+          <span class="hours" id="hour">?</span>
+          <div class="smalltext">Hours</div>
+        </div>
+        <div>
+          <span class="minutes" id="minute">?</span>
+          <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+          <span class="seconds" id="second">?</span>
+          <div class="smalltext">Seconds</div>
+        </div>
+      </div>
+    </div>
+    <div class="countdownViewRowThree">
+      <p id="doneMessage" class="final"></p>
+    </div>
+    <div class="countdownViewRowFour">
+      <div class="countdownViewFooterColumnOne">
+        <div class="logoHolderManu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.73 214.02">
+            <line class="logoManuLineStyle" x1="15.34" y1="25.69" x2="15.34" y2="192.36"></line>
+            <line class="logoManuLineStyle" x1="165.7" y1="25.69" x2="165.7" y2="102.8"></line>
+            <line class="logoManuLineStyle" x1="158.78" y1="23.61" x2="99.82" y2="82.57"></line>
+            <circle class="logoManuLineStyle" cx="15.34" cy="15.34" r="10.34"></circle>
+            <circle class="logoManuLineStyle" cx="15.34" cy="198.68" r="10.34"></circle>
+            <circle class="logoManuLineStyle" cx="165.7" cy="15.34" r="10.34"></circle>
+            <circle class="logoManuLineStyle" cx="324.38" cy="15.34" r="10.34"></circle>
+            <circle class="logoManuLineStyle" cx="91.84" cy="90.14" r="10.34"></circle>
+            <circle class="logoManuLineStyle" cx="42.45" cy="40.78" r="10.34"></circle>
+            <circle class="logoManuLineStyle" cx="66.96" cy="65.3" r="10.34"></circle>
+            <line class="logoManuLineStyle" x1="49.77" y1="48.1" x2="59.65" y2="57.98"></line>
+            <circle class="logoManuLineStyle" cx="165.7" cy="198.68" r="10.34"></circle>
+            <circle class="logoManuLineStyle" cx="165.7" cy="113.14" r="10.34"></circle>
+            <circle class="logoManuLineStyle" cx="165.7" cy="148.84" r="10.34"></circle>
+            <line class="logoManuLineStyle" x1="165.7" y1="159.18" x2="165.7" y2="188.33"></line>
+            <circle class="logoManuLineStyle" cx="217.78" cy="198.68" r="10.34"></circle>
+            <polyline class="logoManuLineStyle" points="217.78 189.08 217.78 127.71 233.88 112.59 264.34 112.59"></polyline>
+            <circle class="logoManuLineStyle" cx="274.01" cy="113.14" r="10.34"></circle>
+            <polyline class="logoManuLineStyle" points="221.73 72.68 221.73 30.31 237.82 15.2 314.28 15.2"></polyline>
+            <circle class="logoManuLineStyle" cx="221.73" cy="82.57" r="10.34"></circle>
+            <path class="logoManuLineStyle" d="M16.22-12.3" transform="translate(-0.87 -1.18)"></path>
+            </svg>
+        </div>
+      </div>
+      <div class="countdownViewFooterColumnTwo">
+        <button id="restart">Set a new countdown...</button>
+      </div>
+      <div class="countdownViewFooterColumnThree">
+        <button id="share">Share this countdown...</button>
+      </div>
+      <div class="countdownViewFooterColumnFour">
+        <div class="logoHolderBix">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 652.3 317.5" style="enable-background:new 0 0 652.3 317.5;" xml:space="preserve">
+          <path class="logoBixStyle0" d="M160.6,144.2c13.8-15.2,23.1-35.2,23.1-58.3c0-53.2-45-85.9-90-85.9H0v317.5h107.7c54.4,0,96.3-41.9,96.3-92.1 C204.1,190.7,187,161.1,160.6,144.2z M61.4,52.7h21.7c18.7,0,37.4,13.6,37.4,35.7s-20.4,37.4-37.4,37.4H61.4V52.7z M103.5,261.5 H61.4v-76.4h42.1c22.1,0,39,17,39,39C142.6,244.5,125.6,261.5,103.5,261.5z"/>
+          <polygon class="logoBixStyle0" points="238.1,0.1 306.1,0.1 306.1,249.6 238.1,317.5 "/>
+          <g>
+              <radialGradient id="SVGID_1_" cx="30.0071" cy="579.7831" r="1" gradientTransform="matrix(310.722 -314.3426 314.3426 310.722 -191230.3281 -170406.2031)" gradientUnits="userSpaceOnUse">
+              <stop  offset="0" style="stop-color:#34AED6"/>
+              <stop  offset="0.3" style="stop-color:#34AED6"/>
+              <stop  offset="0.37" style="stop-color:#38AFD1"/>
+              <stop  offset="0.4843" style="stop-color:#43B0C3"/>
+              <stop  offset="0.6285" style="stop-color:#52B2AA"/>
+              <stop  offset="0.7972" style="stop-color:#63B583"/>
+              <stop  offset="0.9844" style="stop-color:#74B848"/>
+              <stop  offset="1" style="stop-color:#75B843"/>
+            </radialGradient>
+            <path class="logoBixStyle1" d="M466.8,131.7L344.2,312.3c-1.5,2.2,0.1,5.3,2.8,5.3c0,0,1.3,0,2.3-0.8l122.2-123.9l-4-5.8 c-4.8-8.3-7.5-17.9-7.5-28.1l0,0l0,0C460,149,462.4,139.7,466.8,131.7 M645.3,0.1h-71.2c-11.3,0-21.8,5.6-28.2,14.9l-16.1,23.8 c-8.8,13-25.4,53.5,2,92.7L650.9,10.7C654.4,6.7,650.8,0.1,645.3,0.1"/>
+              <radialGradient id="SVGID_2_" cx="30.0071" cy="579.7831" r="1" gradientTransform="matrix(318.705 319.4245 -319.4245 318.705 175973.3906 -194364.9531)" gradientUnits="userSpaceOnUse">
+              <stop  offset="0" style="stop-color:#34AED6"/>
+              <stop  offset="6.180393e-02" style="stop-color:#44ACD4"/>
+              <stop  offset="0.1626" style="stop-color:#61A4CC"/>
+              <stop  offset="0.2899" style="stop-color:#8193BE"/>
+              <stop  offset="0.4372" style="stop-color:#9E75A6"/>
+              <stop  offset="0.5" style="stop-color:#A8639A"/>
+              <stop  offset="1" style="stop-color:#EB5D40"/>
+            </radialGradient>
+            <path class="logoBixStyle2" d="M531.9,131.5l-60.4,61.3l-4-5.8c-4.8-8.3-7.5-17.9-7.5-28.1l0,0c0,10.2,2.7,19.9,7.5,28.1l4,5.8L546,302.6 c6.3,9.3,16.9,14.9,28.2,14.9h71.2c5.5,0,8.7-6.1,5.6-10.6L531.9,131.5C531.9,131.6,531.9,131.5,531.9,131.5 M529.9,38.7l-63.1,93 l63-92.9C529.8,38.8,529.9,38.7,529.9,38.7 M424.7,0.1h-71.2c-5.5,0-8.7,6.1-5.6,10.6l79.8,117.6l60.9-60.8L452.8,15 C446.5,5.7,436,0.1,424.7,0.1"/>
+            <path class="logoBixStyle3" d="M531.9,131.5L531.9,131.5L531.9,131.5L531.9,131.5L531.9,131.5 M529.9,38.7L529.9,38.7 C529.8,38.8,529.8,38.8,529.9,38.7L529.9,38.7C529.8,38.8,529.8,38.8,529.9,38.7"/>
+              <radialGradient id="SVGID_3_" cx="30.0071" cy="579.7831" r="1" gradientTransform="matrix(310.722 -314.3426 314.3426 310.722 -191230.3281 -170406.2031)" gradientUnits="userSpaceOnUse">
+              <stop  offset="0" style="stop-color:#00A2CB"/>
+              <stop  offset="0.3" style="stop-color:#00A2CB"/>
+              <stop  offset="0.3724" style="stop-color:#00A2C6"/>
+              <stop  offset="0.4896" style="stop-color:#00A3B8"/>
+              <stop  offset="0.6372" style="stop-color:#20A5A0"/>
+              <stop  offset="0.8093" style="stop-color:#3AA77B"/>
+              <stop  offset="1" style="stop-color:#4EAA47"/>
+            </radialGradient>
+            <path class="logoBixStyle4" d="M529.8,38.8L529.8,38.8c-8.8,13.1-25.4,53.5,2,92.7l0,0C504.4,92.2,521.1,51.7,529.8,38.8"/>
+              <radialGradient id="SVGID_4_" cx="30.0071" cy="579.7831" r="1" gradientTransform="matrix(318.705 319.4245 -319.4245 318.705 175973.3906 -194364.9531)" gradientUnits="userSpaceOnUse">
+              <stop  offset="0" style="stop-color:#00A2CB"/>
+              <stop  offset="6.419285e-02" style="stop-color:#009FC9"/>
+              <stop  offset="0.1702" style="stop-color:#3C96C1"/>
+              <stop  offset="0.305" style="stop-color:#6284B2"/>
+              <stop  offset="0.4617" style="stop-color:#81659B"/>
+              <stop  offset="0.5" style="stop-color:#875C95"/>
+              <stop  offset="1" style="stop-color:#BE5642"/>
+            </radialGradient>
+            <path class="logoBixStyle5" d="M529.8,38.8l-63,92.9c-4.4,8-6.8,17.3-6.8,27.1c0,10.2,2.7,19.9,7.5,28.1l4,5.8l60.4-61.3l0,0 C504.5,92.3,521,51.9,529.8,38.8L529.8,38.8"/>
+          </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
 
@@ -216,7 +562,7 @@ const initSetupUi = () => {
   // add listener for the save / apply config button
   document.getElementById("setConfig").addEventListener('click', saveAndApplyConfig);
   // show UI
-  document.getElementById("setup").style.display = 'block';
+  document.getElementById("setup").style.display = null;
 }
 
 const saveAndApplyConfig = () => {
@@ -275,7 +621,7 @@ const startCountdown = (configObject) => {
   document.getElementById("projectname").innerHTML = configObject.project;
   document.getElementById("doneMessage").style.visibility = 'hidden';
   document.getElementById("doneMessage").innerHTML = configObject.doneMsg;
-  document.getElementById("countdown").style.display = 'block';
+  document.getElementById("countdown").style.display = null;
   const deadline = new Date(Date.UTC(configObject.year, configObject.month - 1, configObject.day, configObject.hour, configObject.minute)).getTime();
   intervalReference = setInterval(function() {
     let now = new Date().getTime();
