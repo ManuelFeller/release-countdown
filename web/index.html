@@ -171,7 +171,7 @@ html {
 body {
   color: #333;
   text-align: center;
-  background: #eee;
+  background-color: rgba(234,234,234,1);
   background: linear-gradient(125deg, rgba(234,234,234,1) 0%, rgba(210,210,210,1) 100%);
   font-weight: 100;
   height: 100%;
@@ -191,6 +191,9 @@ label {
 }
 input {
   font-size: 2vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  border-radius: 1vh;
 }
 button {
   font-size: 2vw;
@@ -208,7 +211,7 @@ button {
 }
 #clockdiv > div {
   border-radius: 1vh;
-  background: #ccc;
+  background-color: #eee;
   display: inline-block;
   width: 20vw;
   padding-bottom: 1vh;
@@ -311,27 +314,34 @@ button {
 .logoBixStyle3 {fill:#C2DFF0;}
 .logoBixStyle4 {fill:url(#SVGID_3_);}
 .logoBixStyle5 {fill:url(#SVGID_4_);}
-/*
+
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #111;
-    color: #ddd;
+    background-color: rgba(10,10,10,1);
+    background: linear-gradient(125deg, rgba(12,12,12,1) 0%, rgba(34,34,34,1) 100%);
+    color: #bbb;
   }
   h1, h2 {
-    color: #ddd;
+    color: #bbb;
+  }
+  button {
+    color: #bbb;
+    background-color: rgba(10,10,10,1);
+  }
+  input {
+    color: #bbb;
+    background-color: rgba(10,10,10,1);
   }
   #clockdiv {
-    color: #ddd;
+    color: #bbb;
   }
   #clockdiv > div {
-    background: #333;
+    background-color: #222;
   }
-  #clockdiv div > span {
-    background: #009e99;
-    color: #fff;
-  }
+  .logoManuLineStyle {stroke: #aaa;}
+  .logoBixStyle0 {fill:#eee;}
 }
-*/
+
 
 </style>
 </head>
@@ -395,7 +405,7 @@ button {
     </div>
     <div class="countdownViewRowFour">
       <div class="countdownViewFooterColumnOne">
-        <div class="logoHolderManu">
+        <div class="logoHolderManu" title="coded by Manuel 码奴 Feller (GitHub @manuelfeller)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.73 214.02">
             <line class="logoManuLineStyle" x1="15.34" y1="25.69" x2="15.34" y2="192.36"></line>
             <line class="logoManuLineStyle" x1="165.7" y1="25.69" x2="165.7" y2="102.8"></line>
@@ -428,7 +438,7 @@ button {
         <button id="share">Share this countdown...</button>
       </div>
       <div class="countdownViewFooterColumnFour">
-        <div class="logoHolderBix">
+        <div class="logoHolderBix" title="made for BI X (and everyone else), not by BI X (I just work there)">
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             viewBox="0 0 652.3 317.5" style="enable-background:new 0 0 652.3 317.5;" xml:space="preserve">
           <path class="logoBixStyle0" d="M160.6,144.2c13.8-15.2,23.1-35.2,23.1-58.3c0-53.2-45-85.9-90-85.9H0v317.5h107.7c54.4,0,96.3-41.9,96.3-92.1 C204.1,190.7,187,161.1,160.6,144.2z M61.4,52.7h21.7c18.7,0,37.4,13.6,37.4,35.7s-20.4,37.4-37.4,37.4H61.4V52.7z M103.5,261.5 H61.4v-76.4h42.1c22.1,0,39,17,39,39C142.6,244.5,125.6,261.5,103.5,261.5z"/>
