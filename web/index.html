@@ -352,12 +352,12 @@ button {
 
     <div class="inputelement">
       <label for="cntdate">Date:</label><br/>
-      <input id="cntdate" type="date" min="2021-04-16"/>
+      <input id="cntdate" type="date" min="2021-04-16" placeholder="yyyy-mm-dd"/>
     </div>
 
     <div class="inputelement">
       <label for="cnttime">Time: (UTC)</label><br/>
-      <input id="cnttime" type="time"/>
+      <input id="cnttime" type="time" placeholder="hh:mm"/>
     </div>
 
     <div class="inputelement">
@@ -663,7 +663,6 @@ const startCountdown = (configObject) => {
 }
 
 const newCountdown = () => {
-  clearInterval(intervalReference);
   document.getElementById("countdown").style.display = 'none';
   initSetupUi();
 }
