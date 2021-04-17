@@ -172,7 +172,7 @@ body {
   color: #333;
   text-align: center;
   background-color: rgba(234,234,234,1);
-  background: linear-gradient(125deg, rgba(234,234,234,1) 0%, rgba(210,210,210,1) 100%);
+  background: linear-gradient(-45deg, rgba(234,234,234,1) 0%, rgba(210,210,210,1) 100%);
   font-weight: 100;
   height: 100%;
 }
@@ -236,7 +236,7 @@ button:disabled {
 .smalltext {
   font-weight: 400;
 }
-.final {
+.finishedText {
   font-size: 5vw;
 }
 .inputelement {
@@ -310,40 +310,47 @@ button:disabled {
   width: 5vw;
 }
 
-/* animation for background */
-.bodyBgAnimation {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab );
-  background-size: 400% 400%;
-  -webkit-animation: gradientBG 10s ease infinite;
-         animation: gradientBG 10s ease infinite;
+/* animations for reaching 0 */
+.numbersRotationA {
+  -webkit-animation: numberRotateA 2s linear 3;
+  animation: numberRotateA 2s linear 3;
+}
+@-webkit-keyframes numberRotateA {
+  0% {-webkit-transform: rotate(0);}
+  100% {-webkit-transform: rotate(360deg);}
+}
+@keyframes numberRotateA {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(360deg);}
 }
 
-@-webkit-keyframes gradientBG {
- 0% {
- background-position: 0% 50%;
- }
- 50% {
- background-position: 100% 50%;
- }
- 100% {
- background-position: 0% 50%;
- }
+.numbersRotationB {
+  -webkit-animation: numberRotateB 2s linear 3;
+  animation: numberRotateB 2s linear 3;
 }
-@keyframes gradientBG {
- 0% {
- background-position: 0% 50%;
- }
- 50% {
- background-position: 100% 50%;
- }
- 100% {
- background-position: 0% 50%;
- }
+@-webkit-keyframes numberRotateB {
+  0% {-webkit-transform: rotate(0);}
+  100% {-webkit-transform: rotate(-360deg);}
 }
-/*
-document.body.className = document.body.className.replace(' bodyBgAnimation', '');
-document.body.className = document.body.className.concat(' bodyBgAnimation');
- */
+@keyframes numberRotateB {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(-360deg);}
+}
+
+.textPulsing {
+  -webkit-animation: textPulse 2s ease 3;
+  animation: textPulse 2s ease 3;
+}
+@-webkit-keyframes textPulse {
+  0% {font-size: 5vw;}
+  50% {font-size: 10vw;}
+  100% {font-size: 5vw;}
+}
+@keyframes textPulse {
+  0% {font-size: 5vw;}
+  50% {font-size: 10vw;}
+  100% {font-size: 5vw;}
+}
 
 /* svg styles */
 .logoManuLineStyle {fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 10px;}
@@ -354,11 +361,10 @@ document.body.className = document.body.className.concat(' bodyBgAnimation');
 .logoBixStyle4 {fill:url(#SVGID_3_);}
 .logoBixStyle5 {fill:url(#SVGID_4_);}
 
-
 @media (prefers-color-scheme: dark) {
   body {
     background-color: rgba(10,10,10,1);
-    background: linear-gradient(125deg, rgba(12,12,12,1) 0%, rgba(34,34,34,1) 100%);
+    background: linear-gradient(-45deg, rgba(12,12,12,1) 0%, rgba(34,34,34,1) 100%);
     color: #bbb;
   }
   h1, h2 {
@@ -384,7 +390,6 @@ document.body.className = document.body.className.concat(' bodyBgAnimation');
   .logoManuLineStyle {stroke: #aaa;}
   .logoBixStyle0 {fill:#eee;}
 }
-
 </style>
 </head>
 <body>
@@ -444,7 +449,7 @@ document.body.className = document.body.className.concat(' bodyBgAnimation');
       </div>
     </div>
     <div class="countdownViewRowThree">
-      <p id="doneMessage" class="final"></p>
+      <p id="doneMessage" class="finishedText"></p>
     </div>
     <div class="countdownViewRowFour">
       <div class="countdownViewFooterColumnOne">
@@ -598,13 +603,19 @@ const setConfigFromUrl = (url) => {
 }
 
 const stopFinishedAnimations = () => {
-  document.body.className = document.body.className.replace(' bodyBgAnimation', '');
-
+  document.getElementById("day").classList.remove('numbersRotationA');
+  document.getElementById("hour").classList.remove('numbersRotationB');
+  document.getElementById("minute").classList.remove('numbersRotationA');
+  document.getElementById("second").classList.remove('numbersRotationB');
+  document.getElementById("doneMessage").classList.remove('textPulsing');
 }
 
 const startFinishedAnimations = () => {
-  document.body.className = document.body.className.concat(' bodyBgAnimation');
-
+  document.getElementById("day").classList.add('numbersRotationA');
+  document.getElementById("hour").classList.add('numbersRotationB');
+  document.getElementById("minute").classList.add('numbersRotationA');
+  document.getElementById("second").classList.add('numbersRotationB');
+  document.getElementById("doneMessage").classList.add('textPulsing');
 }
 
 const initSetupUi = () => {
@@ -748,12 +759,12 @@ const startCountdown = (configObject) => {
     document.getElementById("second").innerHTML = seconds;
     if (t <= 0) {
       clearInterval(intervalReference);
-      startFinishedAnimations();
       document.getElementById("doneMessage").style.visibility = 'visible';
       document.getElementById("day").innerHTML ='0';
       document.getElementById("hour").innerHTML ='0';
       document.getElementById("minute").innerHTML ='0';
       document.getElementById("second").innerHTML = '0';
+      startFinishedAnimations();
     }
   }, 500);
 }
