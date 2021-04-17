@@ -495,7 +495,6 @@ button {
 </div>
 <script>
 
-
 // define functions
 const getEmptyConfigObject = () => {
   return {
@@ -556,6 +555,15 @@ const setConfigFromUrl = (url) => {
 }
 
 const initSetupUi = () => {
+  // check if there is a config we can return to
+  let savedConfig = localStorage.getItem('config');
+  if (savedConfig === null) { // no saved config yet
+    // disable the back button
+    document.getElementById("cancelConfig").disabled = true;
+  } else {
+    document.getElementById("cancelConfig").disabled = false;
+  }
+  // make sure countdown UI is hidden
   document.getElementById("countdown").style.display = 'none';
   // get date of today
   const isYear = new Date().getFullYear();
@@ -567,6 +575,11 @@ const initSetupUi = () => {
   document.getElementById("cntdate").min = ''.concat(isYear, '-', isMonth, '-', isDay);
   // show UI
   document.getElementById("setup").style.display = null;
+}
+
+const closeSetupUi = () => {
+  document.getElementById("setup").style.display = 'none';
+  document.getElementById("countdown").style.display = null;
 }
 
 const saveAndApplyConfig = () => {
@@ -699,6 +712,7 @@ document.getElementById("countdown").style.display = 'none';
 document.getElementById("setup").style.display = 'none';
 // init - bind the buttons to their functions
 document.getElementById("setConfig").addEventListener('click', saveAndApplyConfig);
+document.getElementById("cancelConfig").addEventListener('click', closeSetupUi);
 document.getElementById("restart").addEventListener('click', newCountdown);
 document.getElementById("share").addEventListener('click', shareCountdown);
 
@@ -707,34 +721,17 @@ let url = new URL(window.location);
 if (url.searchParams.get('a') === 'set') {
   // we have a share URL to apply, so let's do so
   setConfigFromUrl(url);
+} else { // regular execution without share URL
+  // (try to) load from local storage
+  let savedConfig = localStorage.getItem('config');
+  if (savedConfig === null) {
+    // load the configuration UI
+    initSetupUi();
+  } else {
+    // start the countdown based on the configuration
+    startCountdown(JSON.parse(savedConfig));
+  }
 }
-
-// (try to) load from local storage
-let savedConfig = localStorage.getItem('config');
-if (savedConfig === null) {
-  // load the configuration UI
-  initSetupUi();
-} else {
-  // start the countdown based on the configuration
-  startCountdown(JSON.parse(savedConfig));
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </script>
 </body>
