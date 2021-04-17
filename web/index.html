@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>BI X Release Countdown</title>
+<title>(BI X) Release Countdown</title>
 
 <style>
 /* titillium-web-200 - latin */
@@ -495,12 +495,8 @@ button {
 </div>
 <script>
 
-var intervalReference = null;
-document.getElementById("countdown").style.display = 'none';
-document.getElementById("setup").style.display = 'none';
 
-// functions
-
+// define functions
 const getEmptyConfigObject = () => {
   return {
     project: 'next release',
@@ -569,8 +565,6 @@ const initSetupUi = () => {
   if (isDay < 10) {isDay = '0'.concat(isDay);}
   // set min date for the UI
   document.getElementById("cntdate").min = ''.concat(isYear, '-', isMonth, '-', isDay);
-  // add listener for the save / apply config button
-  document.getElementById("setConfig").addEventListener('click', saveAndApplyConfig);
   // show UI
   document.getElementById("setup").style.display = null;
 }
@@ -661,26 +655,67 @@ const newCountdown = () => {
   initSetupUi();
 }
 
+const shareCountdown = () => {
+  const savedConfig = localStorage.getItem('config');
+  if (savedConfig === null) {
+    alert("There is no configured Countdown to share...");
+  } else {
+    const pageUrl = new URL(window.location);
+    const configObject = JSON.parse(savedConfig);
+    const shareUrl = window.location.origin.concat(
+      window.location.pathname,
+      '?a=set&',
+      '&y=',
+      encodeURIComponent(configObject.year),
+      '&m=',
+      encodeURIComponent(configObject.month),
+      '&d=',
+      encodeURIComponent(configObject.day),
+      '&h=',
+      encodeURIComponent(configObject.hour),
+      '&min=',
+      encodeURIComponent(configObject.minute),
+      '&p=',
+      encodeURIComponent(configObject.project),
+      '&msg=',
+      encodeURIComponent(configObject.doneMsg)
+    );
+    navigator.clipboard.writeText(shareUrl)
+      .then(() => {
+        alert('Share URL copied to clipboard...');
+      })
+      .catch(err => {
+        alert('Error copying share URL to the clipboard: ', err);
+      });
+  }
+}
 
+// the actual script execution
 
-// init part
+// init the only global element, the reference to the interval function
+var intervalReference = null;
+// hide both main UI views
+document.getElementById("countdown").style.display = 'none';
+document.getElementById("setup").style.display = 'none';
+// init - bind the buttons to their functions
+document.getElementById("setConfig").addEventListener('click', saveAndApplyConfig);
 document.getElementById("restart").addEventListener('click', newCountdown);
-// set new config part
-var url = new URL(window.location);
+document.getElementById("share").addEventListener('click', shareCountdown);
+
+// check if we should set the countdown config from a share URL
+let url = new URL(window.location);
 if (url.searchParams.get('a') === 'set') {
-  // time / settings should be defined
+  // we have a share URL to apply, so let's do so
   setConfigFromUrl(url);
-  /*
-  ?a=set&h=10&min=0&d=28&m=5&y=2021&p=Medicoach%20Release%201&msg=GO%20LIVE!
-  */
 }
 
 // (try to) load from local storage
-var savedConfig = localStorage.getItem('config');
+let savedConfig = localStorage.getItem('config');
 if (savedConfig === null) {
-  // reminder to show how to set & UI to set it
+  // load the configuration UI
   initSetupUi();
 } else {
+  // start the countdown based on the configuration
   startCountdown(JSON.parse(savedConfig));
 }
 
