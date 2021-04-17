@@ -310,6 +310,41 @@ button:disabled {
   width: 5vw;
 }
 
+/* animation for background */
+.bodyBgAnimation {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab );
+  background-size: 400% 400%;
+  -webkit-animation: gradientBG 10s ease infinite;
+         animation: gradientBG 10s ease infinite;
+}
+
+@-webkit-keyframes gradientBG {
+ 0% {
+ background-position: 0% 50%;
+ }
+ 50% {
+ background-position: 100% 50%;
+ }
+ 100% {
+ background-position: 0% 50%;
+ }
+}
+@keyframes gradientBG {
+ 0% {
+ background-position: 0% 50%;
+ }
+ 50% {
+ background-position: 100% 50%;
+ }
+ 100% {
+ background-position: 0% 50%;
+ }
+}
+/*
+document.body.className = document.body.className.replace(' bodyBgAnimation', '');
+document.body.className = document.body.className.concat(' bodyBgAnimation');
+ */
+
 /* svg styles */
 .logoManuLineStyle {fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 10px;}
 .logoBixStyle0 {fill:#2E3335;}
@@ -562,7 +597,18 @@ const setConfigFromUrl = (url) => {
   window.location.href = window.location.origin.concat(window.location.pathname);
 }
 
+const stopFinishedAnimations = () => {
+  document.body.className = document.body.className.replace(' bodyBgAnimation', '');
+
+}
+
+const startFinishedAnimations = () => {
+  document.body.className = document.body.className.concat(' bodyBgAnimation');
+
+}
+
 const initSetupUi = () => {
+  stopFinishedAnimations();
   // check if there is a config we can return to
   let savedConfig = localStorage.getItem('config');
   if (savedConfig === null) { // no saved config yet
@@ -586,6 +632,7 @@ const initSetupUi = () => {
 }
 
 const closeSetupUi = () => {
+  stopFinishedAnimations();
   document.getElementById("setup").style.display = 'none';
   document.getElementById("countdown").style.display = null;
 }
@@ -609,7 +656,7 @@ const saveAndApplyConfig = () => {
     }
     else {
       // split date
-      const dateParts = dateCheck.split('-');
+      const dateParts = deadlineDateValue.split('-');
       // save date in config
       newConfig.year = parseInt(dateParts[0]);
       newConfig.month = parseInt(dateParts[1]);
@@ -629,7 +676,7 @@ const saveAndApplyConfig = () => {
       errors += '\n- wrong time format (use hh:mm)';
     } else {
       // split time
-      const timeParts = timeCheck.split(':');
+      const timeParts = deadlineTimeValue.split(':');
       // save time in config
       newConfig.hour = parseInt(timeParts[0]);
       newConfig.minute = parseInt(timeParts[1]);
@@ -643,12 +690,12 @@ const saveAndApplyConfig = () => {
   // if no error yet check if input can be combined to a valid date
   if (!hasMissing) {
     try {
-      const testDate = new Date(newConfig.year, (newConfig.month - 1), newConfig.day, newConfig.hour, newConfig.minute);
-      if (testDate.getDate() != newConfig.year
-          || testDate.getMonth() != (newConfig.month - 1)
-          || testDate.getFullYear() != newConfig.day
-          || testDate.getHours() != newConfig.hour
-          || testDate.getMinutes() != newConfig.minute
+      const testDate = new Date(Date.UTC(newConfig.year, (newConfig.month - 1), newConfig.day, newConfig.hour, newConfig.minute));
+      if (testDate.getUTCFullYear() != newConfig.year
+          || testDate.getUTCMonth() != (newConfig.month - 1)
+          || testDate.getUTCDate() != newConfig.day
+          || testDate.getUTCHours() != newConfig.hour
+          || testDate.getUTCMinutes() != newConfig.minute
           ) {
             hasMissing = true;
             // ToDo: show error
@@ -682,11 +729,12 @@ const saveAndApplyConfig = () => {
 }
 
 const startCountdown = (configObject) => {
+  stopFinishedAnimations();
   document.getElementById("projectname").innerHTML = configObject.project;
   document.getElementById("doneMessage").style.visibility = 'hidden';
   document.getElementById("doneMessage").innerHTML = configObject.doneMsg;
   document.getElementById("countdown").style.display = null;
-  const deadline = new Date(Date.UTC(configObject.year, configObject.month - 1, configObject.day, configObject.hour, configObject.minute)).getTime();
+  const deadline = new Date(Date.UTC(configObject.year, (configObject.month - 1), configObject.day, configObject.hour, configObject.minute)).getTime();
   intervalReference = setInterval(function() {
     let now = new Date().getTime();
     let t = deadline - now;
@@ -700,6 +748,7 @@ const startCountdown = (configObject) => {
     document.getElementById("second").innerHTML = seconds;
     if (t <= 0) {
       clearInterval(intervalReference);
+      startFinishedAnimations();
       document.getElementById("doneMessage").style.visibility = 'visible';
       document.getElementById("day").innerHTML ='0';
       document.getElementById("hour").innerHTML ='0';
