@@ -34,7 +34,6 @@
        url('fonts/titillium-web-v9-latin-200.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-200.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-300 - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -48,7 +47,6 @@
        url('fonts/titillium-web-v9-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-300.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-200italic - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -62,7 +60,6 @@
        url('fonts/titillium-web-v9-latin-200italic.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-200italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-300italic - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -76,7 +73,6 @@
        url('fonts/titillium-web-v9-latin-300italic.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-300italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-regular - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -90,7 +86,6 @@
        url('fonts/titillium-web-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-regular.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-italic - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -104,7 +99,6 @@
        url('fonts/titillium-web-v9-latin-italic.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-600 - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -118,7 +112,6 @@
        url('fonts/titillium-web-v9-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-600.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-600italic - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -132,7 +125,6 @@
        url('fonts/titillium-web-v9-latin-600italic.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-600italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-700italic - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -146,7 +138,6 @@
        url('fonts/titillium-web-v9-latin-700italic.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-700italic.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-700 - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -160,7 +151,6 @@
        url('fonts/titillium-web-v9-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
        url('fonts/titillium-web-v9-latin-700.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
-
 /* titillium-web-900 - latin */
 @font-face {
   font-family: 'Titillium Web';
@@ -175,6 +165,20 @@
        url('fonts/titillium-web-v9-latin-900.svg#TitilliumWeb') format('svg'); /* Legacy iOS */
 }
 
+/* variables */
+
+:root {
+  --bgGradientStart: rgba(234,234,234,1);
+  --bgGradientEnd: rgba(210,210,210,1);
+  --mainTextColor: #333;
+  --cntElementBackground: #eee;
+  --cntNumberTextColor: #fff;
+  --btnBackgroundColor: #ddd;
+  --btnDisabledTextColor: #888;
+  --logoManuColor: #000;
+  --logoBixColor: #2E3335;
+}
+
 /* page styles */
 
 * {
@@ -186,20 +190,20 @@ html {
   height: 100%;
 }
 body {
-  color: #333;
+  color: var(--mainTextColor);
   text-align: center;
-  background-color: rgba(234,234,234,1);
-  background: linear-gradient(-45deg, rgba(234,234,234,1) 0%, rgba(210,210,210,1) 100%);
+  background-color: var(--bgGradientStart);
+  background: linear-gradient(-45deg, var(--bgGradientStart) 0%, var(--bgGradientEnd) 100%);
   font-weight: 100;
   height: 100%;
 }
 h1 {
-  color: #333;
+  color: var(--mainTextColor);
   font-size: 6vw;
   font-weight: 500;
 }
 h2 {
-  color: #333;
+  color: var(--mainTextColor);
   font-size: 4vw;
   font-weight: 500;
 }
@@ -217,22 +221,24 @@ button {
   padding-left: 0.5vw;
   padding-right: 0.5vw;
   border-radius: 1vh;
+  color: var(--mainTextColor);
+  background-color: var(--btnBackgroundColor);
 }
 button:disabled {
-  color: #888;
+  color: var(--btnDisabledTextColor);
   border: 0px;
 }
 
 #clockdiv {
   font-family: sans-serif;
-  color: #333;
+  color: var(--mainTextColor);
   display: inline-block;
   text-align: center;
   font-size: 3vw;
 }
 #clockdiv > div {
   border-radius: 1vh;
-  background-color: #eee;
+  background-color: var(--cntElementBackground);
   display: inline-block;
   width: 20vw;
   padding-bottom: 1vh;
@@ -245,9 +251,10 @@ button:disabled {
   font-size: 5vw;
   font-weight: 600;
   width: 100%;
+  background-color: #444; /* fixed color as this does not change in light / dark mode */
   background-image: url("data:image/svg+xml;utf8,%3Csvg preserveAspectRatio='none' viewBox='0 0 1 1' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-color='%23fff' stop-opacity='0'%3E%3C/stop%3E%3Cstop offset='1' stop-color='%23fff' stop-opacity='1'%3E%3C/stop%3E%3C/linearGradient%3E%3Cmask id='m'%3E%3Crect x='0' y='0' width='1' height='1' fill='url(%23g)'%3E%3C/rect%3E%3C/mask%3E%3ClinearGradient id='a' gradientTransform='rotate(90)'%3E%3Cstop offset='0' stop-color='%2375B843'%3E%3C/stop%3E%3Cstop offset='1' stop-color='%23E71C77'%3E%3C/stop%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientTransform='rotate(90)'%3E%3Cstop offset='0' stop-color='%23003D7C'%3E%3C/stop%3E%3Cstop offset='1' stop-color='%2334AED6'%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' width='1' height='1' fill='url(%23a)' mask='url(%23m)'%3E%3C/rect%3E%3Crect x='0' y='0' width='1' height='1' fill='url(%23b)' mask='url(%23m)' transform='translate(1,1) rotate(180)'%3E%3C/rect%3E%3C/svg%3E");
   background-size: 100% 100%;
-  color: #fff;
+  color: var(--cntNumberTextColor);
   display: inline-block;
 }
 .smalltext {
@@ -327,6 +334,12 @@ button:disabled {
   width: 5vw;
 }
 
+.colorModeToggle {
+  position: absolute;
+  top: 1vh;
+  right: 1vw;
+}
+
 /* animations for reaching 0 */
 .numbersRotationA {
   -webkit-animation: numberRotateA 2s linear 3;
@@ -370,47 +383,37 @@ button:disabled {
 }
 
 /* svg styles */
-.logoManuLineStyle {fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 10px;}
-.logoBixStyle0 {fill:#2E3335;}
+.logoManuLineStyle {fill: none; stroke: var(--logoManuColor); stroke-miterlimit: 10; stroke-width: 10px;}
+.logoBixStyle0 {fill:var(--logoBixColor);}
 .logoBixStyle1 {fill:url(#SVGID_1_);}
 .logoBixStyle2 {fill:url(#SVGID_2_);}
 .logoBixStyle3 {fill:#C2DFF0;}
 .logoBixStyle4 {fill:url(#SVGID_3_);}
 .logoBixStyle5 {fill:url(#SVGID_4_);}
 
+
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: rgba(10,10,10,1);
-    background: linear-gradient(-45deg, rgba(12,12,12,1) 0%, rgba(34,34,34,1) 100%);
-    color: #bbb;
+  :root {
+    --bgGradientStart: rgba(12,12,12,1);
+    --bgGradientEnd: rgba(34,34,34,1);
+    --mainTextColor: #bbb;
+    --cntElementBackground: #222;
+    --cntNumberTextColor: #fff;
+    --btnBackgroundColor: rgba(10,10,10,1);
+    --btnDisabledTextColor: #444;
+    --logoManuColor: #aaa;
+    --logoBixColor: #eee;
   }
-  h1, h2 {
-    color: #bbb;
-  }
-  button {
-    color: #bbb;
-    background-color: rgba(10,10,10,1);
-  }
-  button:disabled {
-    color: #444;
-  }
-  input {
-    color: #bbb;
-    background-color: rgba(10,10,10,1);
-  }
-  #clockdiv {
-    color: #bbb;
-  }
-  #clockdiv > div {
-    background-color: #222;
-  }
-  .logoManuLineStyle {stroke: #aaa;}
-  .logoBixStyle0 {fill:#eee;}
 }
+
 </style>
 </head>
 <body>
 <div class="fullSize">
+  <div class="colorModeToggle">
+    <button>dark/light</button>
+  </div>
+
   <div id="setup">
     <h1>Setup your countdown:</h1>
 
