@@ -558,6 +558,14 @@ const getEmptyConfigObject = () => {
   }
 }
 
+const addLeadingZeroIfNeeded = (value) => {
+  if (value < 10) {
+    return '0'.concat(value);
+  } else {
+    return value;
+  }
+}
+
 const setConfigFromUrl = (url) => {
   let newConfig = getEmptyConfigObject();
 
@@ -628,16 +636,20 @@ const initSetupUi = () => {
     // disable the back button
     document.getElementById("cancelConfig").disabled = true;
   } else {
+    // load current target time
     document.getElementById("cancelConfig").disabled = false;
+    const tmpConfig = JSON.parse(savedConfig);
+    document.getElementById("cntname").value = tmpConfig.project;
+    document.getElementById("cntdone").value = tmpConfig.doneMsg;
+    document.getElementById("cntdate").value = ''.concat(tmpConfig.year, '-', addLeadingZeroIfNeeded(tmpConfig.month), '-', addLeadingZeroIfNeeded(tmpConfig.day));
+    document.getElementById("cnttime").value = ''.concat(addLeadingZeroIfNeeded(tmpConfig.hour), ':', addLeadingZeroIfNeeded(tmpConfig.minute));
   }
   // make sure countdown UI is hidden
   document.getElementById("countdown").style.display = 'none';
   // get date of today
   const isYear = new Date().getFullYear();
-  let isMonth = new Date().getUTCMonth() + 1;
-  if (isMonth < 10) {isMonth = '0'.concat(isMonth);}
-  let isDay = new Date().getDate();
-  if (isDay < 10) {isDay = '0'.concat(isDay);}
+  const isMonth = addLeadingZeroIfNeeded(new Date().getUTCMonth() + 1);
+  const isDay = addLeadingZeroIfNeeded(new Date().getDate());
   // set min date for the UI
   document.getElementById("cntdate").min = ''.concat(isYear, '-', isMonth, '-', isDay);
   // show UI
