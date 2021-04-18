@@ -166,10 +166,9 @@
 }
 
 /* variables */
-
 :root {
-  --bgGradientStart: rgba(234,234,234,1);
-  --bgGradientEnd: rgba(210,210,210,1);
+  --bgGradientStart: rgb(234,234,234);
+  --bgGradientEnd: rgb(210,210,210);
   --mainTextColor: #333;
   --cntElementBackground: #eee;
   --cntNumberTextColor: #fff;
@@ -180,7 +179,6 @@
 }
 
 /* page styles */
-
 * {
   padding: 0;
   margin: 0;
@@ -391,27 +389,25 @@ button:disabled {
 .logoBixStyle4 {fill:url(#SVGID_3_);}
 .logoBixStyle5 {fill:url(#SVGID_4_);}
 
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --bgGradientStart: rgba(12,12,12,1);
-    --bgGradientEnd: rgba(34,34,34,1);
+    --bgGradientStart: rgb(12,12,12);
+    --bgGradientEnd: rgb(34,34,34);
     --mainTextColor: #bbb;
     --cntElementBackground: #222;
     --cntNumberTextColor: #fff;
-    --btnBackgroundColor: rgba(10,10,10,1);
+    --btnBackgroundColor: rgb(10,10,10);
     --btnDisabledTextColor: #444;
     --logoManuColor: #aaa;
     --logoBixColor: #eee;
   }
 }
-
 </style>
 </head>
 <body>
 <div class="fullSize">
   <div class="colorModeToggle">
-    <button>dark/light</button>
+    <button id="themeToggle">🌞 ↔️ 🌚</button>
   </div>
 
   <div id="setup">
@@ -564,6 +560,33 @@ button:disabled {
 <script>
 
 // define functions
+const toggleColorMode = () => {
+  // check main text color to find out what mode is active
+  if (getComputedStyle(document.documentElement).getPropertyValue('--mainTextColor') === '#333') {
+    // toggle to dark
+    document.documentElement.style.setProperty('--bgGradientStart', 'rgb(12,12,12)');
+    document.documentElement.style.setProperty('--bgGradientEnd', 'rgb(34,34,34)');
+    document.documentElement.style.setProperty('--mainTextColor', '#bbb');
+    document.documentElement.style.setProperty('--cntElementBackground', '#222');
+    document.documentElement.style.setProperty('--cntNumberTextColor', '#fff');
+    document.documentElement.style.setProperty('--btnBackgroundColor', 'rgb(10,10,10)');
+    document.documentElement.style.setProperty('--btnDisabledTextColor', '#444');
+    document.documentElement.style.setProperty('--logoManuColor', '#aaa');
+    document.documentElement.style.setProperty('--logoBixColor', '#eee');
+  } else {
+    // toggle to light
+    document.documentElement.style.setProperty('--bgGradientStart', 'rgb(234,234,234)');
+    document.documentElement.style.setProperty('--bgGradientEnd', 'rgb(210,210,210)');
+    document.documentElement.style.setProperty('--mainTextColor', '#333');
+    document.documentElement.style.setProperty('--cntElementBackground', '#eee');
+    document.documentElement.style.setProperty('--cntNumberTextColor', '#fff');
+    document.documentElement.style.setProperty('--btnBackgroundColor', '#ddd');
+    document.documentElement.style.setProperty('--btnDisabledTextColor', '#888');
+    document.documentElement.style.setProperty('--logoManuColor', '#000');
+    document.documentElement.style.setProperty('--logoBixColor', '#2E3335');
+  }
+}
+
 const getEmptyConfigObject = () => {
   return {
     project: 'next release',
@@ -849,6 +872,7 @@ var intervalReference = null;
 document.getElementById("countdown").style.display = 'none';
 document.getElementById("setup").style.display = 'none';
 // init - bind the buttons to their functions
+document.getElementById("themeToggle").addEventListener('click', toggleColorMode);
 document.getElementById("setConfig").addEventListener('click', saveAndApplyConfig);
 document.getElementById("cancelConfig").addEventListener('click', closeSetupUi);
 document.getElementById("restart").addEventListener('click', newCountdown);
