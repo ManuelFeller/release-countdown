@@ -1,0 +1,29 @@
+{
+  "short_name": "Countdown",
+  "name": "Manu's (BI X) Release Countdown",
+  "icons": [
+    {
+      "src": "/images/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#dddade",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#dddade",
+  "description": "A release countdown for teams that want to track the remaining time for something to be published. Also usable for other countdown needs...",
+  "screenshots": [
+    {
+      "src": "/images/screenshot.png",
+      "type": "image/png",
+      "sizes": "1200x630"
+    }
+  ]
+}
