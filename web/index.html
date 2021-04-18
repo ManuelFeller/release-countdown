@@ -318,7 +318,7 @@ button:disabled {
     </div>
 
     <div class="inputelement">
-      <label for="cnttime">Time: (UTC)</label><br/>
+      <label for="cnttime">Time:</label><br/>
       <input id="cnttime" type="time" placeholder="hh:mm"/>
     </div>
 
@@ -614,7 +614,7 @@ const saveAndApplyConfig = () => {
   const deadlineTimeValue = document.getElementById("cnttime").value;
   // init missing check
   let hasMissing = false;
-  let newConfig = getEmptyConfigObject();
+  let tempTestConfig = getEmptyConfigObject();
   if (deadlineDateValue !== '') {
     const dateCheck = deadlineDateValue.match(/^\d{4}[./-]\d{2}[./-]\d{2}$/);
     if (dateCheck === null) {
@@ -626,9 +626,9 @@ const saveAndApplyConfig = () => {
       // split date
       const dateParts = deadlineDateValue.split('-');
       // save date in config
-      newConfig.year = parseInt(dateParts[0]);
-      newConfig.month = parseInt(dateParts[1]);
-      newConfig.day = parseInt(dateParts[2]);
+      tempTestConfig.year = parseInt(dateParts[0]);
+      tempTestConfig.month = parseInt(dateParts[1]);
+      tempTestConfig.day = parseInt(dateParts[2]);
     }
   } else {
     hasMissing = true;
@@ -646,24 +646,23 @@ const saveAndApplyConfig = () => {
       // split time
       const timeParts = deadlineTimeValue.split(':');
       // save time in config
-      newConfig.hour = parseInt(timeParts[0]);
-      newConfig.minute = parseInt(timeParts[1]);
+      tempTestConfig.hour = parseInt(timeParts[0]);
+      tempTestConfig.minute = parseInt(timeParts[1]);
     }
   } else {
     hasMissing = true;
     // ToDo: show error
     errors += '\n- missing time';
   }
-
   // if no error yet check if input can be combined to a valid date
   if (!hasMissing) {
     try {
-      const testDate = new Date(Date.UTC(newConfig.year, (newConfig.month - 1), newConfig.day, newConfig.hour, newConfig.minute));
-      if (testDate.getUTCFullYear() != newConfig.year
-          || testDate.getUTCMonth() != (newConfig.month - 1)
-          || testDate.getUTCDate() != newConfig.day
-          || testDate.getUTCHours() != newConfig.hour
-          || testDate.getUTCMinutes() != newConfig.minute
+      const testDate = new Date(Date.UTC(tempTestConfig.year, (tempTestConfig.month - 1), tempTestConfig.day, tempTestConfig.hour, tempTestConfig.minute));
+      if (testDate.getUTCFullYear() != tempTestConfig.year
+          || testDate.getUTCMonth() != (tempTestConfig.month - 1)
+          || testDate.getUTCDate() != tempTestConfig.day
+          || testDate.getUTCHours() != tempTestConfig.hour
+          || testDate.getUTCMinutes() != tempTestConfig.minute
           ) {
             hasMissing = true;
             // ToDo: show error
@@ -675,15 +674,25 @@ const saveAndApplyConfig = () => {
       errors += '\n- the input is not a valid date or time...';
     }
   }
-
+  // all date that is needed is available
   if (!hasMissing) {
     // optional values
     if (projectNameValue.trim() !== '') {
-      newConfig.project = projectNameValue;
+      tempTestConfig.project = projectNameValue;
     }
     if (finishedTextValue.trim() !== '') {
-      newConfig.doneMsg = finishedTextValue;
+      tempTestConfig.doneMsg = finishedTextValue;
     }
+    // do timezone conversion (create date form based on current timezone)
+    const convertDate = new Date(tempTestConfig.year, (tempTestConfig.month - 1), tempTestConfig.day, tempTestConfig.hour, tempTestConfig.minute);
+    const newConfig = getEmptyConfigObject();
+    newConfig.project = tempTestConfig.project;
+    newConfig.doneMsg = tempTestConfig.doneMsg;
+    newConfig.year = convertDate.getUTCFullYear();
+    newConfig.month = convertDate.getUTCMonth() + 1;
+    newConfig.day = convertDate.getUTCDate();
+    newConfig.hour = convertDate.getUTCHours();
+    newConfig.minute = convertDate.getUTCMinutes();
     // save config
     localStorage.setItem('config', JSON.stringify(newConfig));
     // delete old timer
