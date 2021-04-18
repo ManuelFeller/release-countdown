@@ -712,7 +712,9 @@ const saveAndApplyConfig = () => {
             errors += '\n- the input is not a valid date or time...';
       } else {
         // check if date is in the future
-        if ((new Date()) <= testDate) {
+        console.log(new Date());
+        console.log(testDate);
+        if ((new Date()) >= testDate) {
           hasMissing = true;
             // add error text
             errors += '\n- the new countdown target time needs to be in the future...';
