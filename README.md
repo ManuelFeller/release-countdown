@@ -1,8 +1,15 @@
 # My (BI X) Release Countdown
 
-This is a small script that implements a release countdown in pure HTML, CSS and JS.
+This is a small script that implements a release countdown in pure HTML, CSS and JS.  
+It should work on all modern browsers (tested on MacOS Firefox/Chrome/Safari, iOS Safari & Android Firefox/Chrome)
 
-![Opengraph Screenshot](web/images/screenshot.png)
+**License**: MIT (except the logos at the bottom left and right)
+
+![Screenshot Dark Version](imagework/screenshot_dark.png)
+Countdown in dark mode
+
+![Screenshot Dark Version](imagework/screenshot_light.png)
+Countdown in light mode
 
 You can see it in action at https://countdown.bi-x.info - no tracking is happening there (I have disabled all logs on the server side).
 
