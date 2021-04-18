@@ -619,7 +619,7 @@ const saveAndApplyConfig = () => {
     const dateCheck = deadlineDateValue.match(/^\d{4}[./-]\d{2}[./-]\d{2}$/);
     if (dateCheck === null) {
       hasMissing = true;
-      // ToDo: show error
+      // add error text
       errors += '\n- wrong date format (use yyyy-mm-dd)';
     }
     else {
@@ -632,7 +632,7 @@ const saveAndApplyConfig = () => {
     }
   } else {
     hasMissing = true;
-    // ToDo: show error
+    // add error text
     errors += '\n- missing date';
   }
 
@@ -640,7 +640,7 @@ const saveAndApplyConfig = () => {
     const timeCheck = deadlineTimeValue.match(/^\d{2}[./:]\d{2}$/);
     if (timeCheck === null) {
       hasMissing = true;
-      // ToDo: show error
+      // add error text
       errors += '\n- wrong time format (use hh:mm)';
     } else {
       // split time
@@ -651,30 +651,39 @@ const saveAndApplyConfig = () => {
     }
   } else {
     hasMissing = true;
-    // ToDo: show error
+    // add error text
     errors += '\n- missing time';
   }
   // if no error yet check if input can be combined to a valid date
   if (!hasMissing) {
     try {
+      // tetsing for a valid date
       const testDate = new Date(Date.UTC(tempTestConfig.year, (tempTestConfig.month - 1), tempTestConfig.day, tempTestConfig.hour, tempTestConfig.minute));
       if (testDate.getUTCFullYear() != tempTestConfig.year
           || testDate.getUTCMonth() != (tempTestConfig.month - 1)
           || testDate.getUTCDate() != tempTestConfig.day
           || testDate.getUTCHours() != tempTestConfig.hour
           || testDate.getUTCMinutes() != tempTestConfig.minute
-          ) {
+          ) { // date is not matching with what was entered by the user, so it is invalid (even if it may have been converted)
             hasMissing = true;
-            // ToDo: show error
+            // add error text
             errors += '\n- the input is not a valid date or time...';
+      } else {
+        // check if date is in the future
+        if ((new Date()) <= testDate) {
+          hasMissing = true;
+            // add error text
+            errors += '\n- the new countdown target time needs to be in the future...';
+        }
       }
     } catch (err) {
       hasMissing = true;
-      // ToDo: show error
+      // add error text
       errors += '\n- the input is not a valid date or time...';
     }
   }
-  // all date that is needed is available
+
+  // all data that is needed is available
   if (!hasMissing) {
     // optional values
     if (projectNameValue.trim() !== '') {
