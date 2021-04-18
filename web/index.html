@@ -579,10 +579,13 @@ const initSetupUi = () => {
     // load current target time
     document.getElementById("cancelConfig").disabled = false;
     const tmpConfig = JSON.parse(savedConfig);
+    // generate date from UTC time setting
+    const tmpDate = new Date(Date.UTC(tmpConfig.year, (tmpConfig.month - 1), tmpConfig.day, tmpConfig.hour, tmpConfig.minute));
     document.getElementById("cntname").value = tmpConfig.project;
     document.getElementById("cntdone").value = tmpConfig.doneMsg;
-    document.getElementById("cntdate").value = ''.concat(tmpConfig.year, '-', addLeadingZeroIfNeeded(tmpConfig.month), '-', addLeadingZeroIfNeeded(tmpConfig.day));
-    document.getElementById("cnttime").value = ''.concat(addLeadingZeroIfNeeded(tmpConfig.hour), ':', addLeadingZeroIfNeeded(tmpConfig.minute));
+    // enter date adjusted to local timezone
+    document.getElementById("cntdate").value = ''.concat(tmpDate.getFullYear(), '-', addLeadingZeroIfNeeded(tmpDate.getMonth() + 1), '-', addLeadingZeroIfNeeded(tmpDate.getDate()));
+    document.getElementById("cnttime").value = ''.concat(addLeadingZeroIfNeeded(tmpDate.getHours()), ':', addLeadingZeroIfNeeded(tmpDate.getMinutes()));
   }
   // make sure countdown UI is hidden
   document.getElementById("countdown").style.display = 'none';
