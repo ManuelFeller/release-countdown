@@ -36,7 +36,7 @@
      inkscape:window-width="1529"
      inkscape:window-height="794"
      inkscape:window-x="816"
-     inkscape:window-y="773"
+     inkscape:window-y="745"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
@@ -46,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,9 +60,9 @@
        cx="44"
        cy="44"
        r="40"
-       inkscape:export-filename="/Users/manuelfeller/Projects/release_countdown/web/images/icon-192.png"
-       inkscape:export-xdpi="55.419998"
-       inkscape:export-ydpi="55.419998" />
+       inkscape:export-filename="/Users/manuelfeller/Projects/release_countdown/web/images/icon-16.png"
+       inkscape:export-xdpi="4.6181817"
+       inkscape:export-ydpi="4.6181817" />
     <circle
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:7.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path10-8"
@@ -75,8 +75,8 @@
        sodipodi:end="4.7121992"
        sodipodi:arc-type="slice"
        d="M 69.696321,69.213074 A 36,36 0 0 1 26.199626,75.29132 36,36 0 0 1 9.1961992,34.796987 36,36 0 0 1 43.993168,8.0000006 L 44,44 Z"
-       inkscape:export-filename="/Users/manuelfeller/Projects/release_countdown/web/images/icon-192.png"
-       inkscape:export-xdpi="55.419998"
-       inkscape:export-ydpi="55.419998" />
+       inkscape:export-filename="/Users/manuelfeller/Projects/release_countdown/web/images/icon-16.png"
+       inkscape:export-xdpi="4.6181817"
+       inkscape:export-ydpi="4.6181817" />
   </g>
 </svg>
