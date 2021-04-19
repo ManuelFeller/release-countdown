@@ -202,12 +202,42 @@ button:disabled {
 .finishedText {
   font-size: 5vw;
 }
-.inputelement {
-  padding-top: 1vh;
-  padding-bottom: 1vh;
+
+.setupContainer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  text-align: center;
 }
+.setupItems {
+  display: grid;
+  grid-column-gap: 1vw;
+  grid-row-gap: 1vw;
+  grid-template-columns: 25vw 25vw 25vw 25vw 0px;
+  padding-bottom: 2vw;
+}
+.setupLeftColumn {
+  grid-column: 2;
+}
+.setupRightColumns {
+  grid-column: 3;
+}
+.setupCenterColumns {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.setupFullWidth {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+.setupHintText {
+  font-size: 1.5vw;
+}
+
 .fullSize {
   height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .countdownViewLayout {
@@ -347,37 +377,46 @@ button:disabled {
 </head>
 <body>
 <div class="fullSize">
-  <div class="colorModeToggle">
-    <button id="themeToggle" title="Toggle Color Theme">🌞 ↔️ 🌚</button>
-  </div>
+  <div id="setup" class="setupContainer">
+    
+    <div class="setupItems">
+      <div class="setupFullWidth">
+        <h1>Setup your countdown:</h1>
+      </div>
+      <div class="setupLeftColumn">
+        <label for="cntdate">Date:</label><br/>
+        <input id="cntdate" type="date" min="2021-04-16" placeholder="yyyy-mm-dd"/>
+      </div>
 
-  <div id="setup">
-    <h1>Setup your countdown:</h1>
+      <div class="setupRightColumns">
+        <label for="cnttime">Time:</label><br/>
+        <input id="cnttime" type="time" placeholder="hh:mm"/>
+      </div>
 
-    <div class="inputelement">
-      <label for="cntdate">Date:</label><br/>
-      <input id="cntdate" type="date" min="2021-04-16" placeholder="yyyy-mm-dd"/>
-    </div>
+      <div class="setupLeftColumn">
+        <label for="cntname">Project / Release Name:</label><br/>
+        <input id="cntname" type="text" placeholder="next release" />
+      </div>
 
-    <div class="inputelement">
-      <label for="cnttime">Time:</label><br/>
-      <input id="cnttime" type="time" placeholder="hh:mm"/>
-    </div>
+      <div class="setupRightColumns">
+        <label for="cntdone">Completed Message:</label><br/>
+        <input id="cntdone" type="text" placeholder="Get it out!" />
+      </div>
+      <div class="setupCenterColumns">
+        <label for="themeToggle">Toggle color theme:</label><br/>
+        <button id="themeToggle" title="Toggle between light and dark theme">light 🌞 &nbsp; ↔️ &nbsp; 🌚 dark</button><br/>
+        <span class="setupHintText">(Color theme settings are saved immediately)</span>
+      </div>
+      <div class="setupCenterColumns">
+        &nbsp;
+      </div>
+      <div class="setupLeftColumn">
+        <button id="setConfig" title="Start the countdown with the current settings">🚀 Start Countdown</button>
+      </div>
 
-    <div class="inputelement">
-      <label for="cntname">Project / Release Name:</label><br/>
-      <input id="cntname" type="text" placeholder="next release" />
-    </div>
-
-    <div class="inputelement">
-      <label for="cntdone">Completed Message:</label><br/>
-      <input id="cntdone" type="text" placeholder="Get it out!" />
-    </div>
-
-    <div class="inputelement">
-      <button id="setConfig" title="Start the countdown with the current settings">🚀 Start Countdown</button>
-      &nbsp; &nbsp;
-      <button id="cancelConfig" title="Cancel changes and return to the running countdown">🚫 Cancel</button>
+      <div class="setupRightColumns">
+        <button id="cancelConfig" title="Close settings and return to the running countdown">❎ Close</button>
+      </div>
     </div>
   </div>
 
