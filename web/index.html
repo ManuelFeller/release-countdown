@@ -503,10 +503,43 @@ button:disabled {
 <script>
 
 // define functions
+
+const getCurrentColorMode = () => {
+  const currentMode = localStorage.getItem('colorMode');
+  if (currentMode === null) {
+    // not set yet
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // api is available and set to dark
+      return 'dark';
+    } else {
+      // assume light mode
+      return 'light';
+    }
+  } else {
+    return currentMode;
+  }
+}
+
 const toggleColorMode = () => {
+  // check for local setting that is already there
+  let currentMode = getCurrentColorMode();
   // check main text color to find out what mode is active
-  if (getComputedStyle(document.documentElement).getPropertyValue('--mainTextColor') === '#333') {
+  if (currentMode === 'light') {
     // toggle to dark
+    setColorMode(true);
+    // persist current setting
+    localStorage.setItem('colorMode', 'dark')
+  } else {
+    // toggle to light
+    setColorMode(false);
+    // persist current setting
+    localStorage.setItem('colorMode', 'light')
+  }
+}
+
+const setColorMode = (setToDark) => {
+  if (setToDark) {
+    // set to dark
     document.documentElement.style.setProperty('--bgGradientStart', 'rgb(12,12,12)');
     document.documentElement.style.setProperty('--bgGradientEnd', 'rgb(34,34,34)');
     document.documentElement.style.setProperty('--mainTextColor', '#bbb');
@@ -517,7 +550,7 @@ const toggleColorMode = () => {
     document.documentElement.style.setProperty('--logoManuColor', '#aaa');
     document.documentElement.style.setProperty('--logoBixColor', '#eee');
   } else {
-    // toggle to light
+    // set to light
     document.documentElement.style.setProperty('--bgGradientStart', 'rgb(234,234,234)');
     document.documentElement.style.setProperty('--bgGradientEnd', 'rgb(210,210,210)');
     document.documentElement.style.setProperty('--mainTextColor', '#333');
@@ -832,6 +865,12 @@ const shareCountdown = () => {
 
 // the actual script execution
 
+// check if there is a preferred theme configured and set it
+if (getCurrentColorMode() === 'dark') {
+  setColorMode(true);
+} else {
+  setColorMode(false);
+}
 // init the only global element, the reference to the interval function
 var intervalReference = null;
 // hide both main UI views
