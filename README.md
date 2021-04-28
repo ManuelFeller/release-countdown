@@ -1,4 +1,4 @@
-# My (BI X) Release Countdown
+# Manu's Release Countdown
 
 This is a small script that implements a release countdown in pure HTML, CSS and JS.  
 It should work on all modern browsers (tested on MacOS Firefox/Chrome/Safari, iOS Safari & Android Firefox/Chrome)
@@ -14,6 +14,13 @@ Countdown in light mode
 You can see it in action at https://countdown.devsvr.ws - no tracking is happening there (I have disabled all logs on the server side).
 
 Beside date and time when the countdown should be over you can customize the name of the release (the "next release" is the part that is then replaced with your text) and the text that is displayed once the countdown reached zero.
+
+## Development and Building
+
+First you need to clone this repo and then run `npm install`. After that you can:
+
+- run `npm run start` to run the version in the webpack dev server (browser opens automatically)
+- run `npm run build` to generate a deployable version in the `dist` folder
 
 ## To consider when deploying your own version
 

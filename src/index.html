@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Release Countdown</title>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="language" content="en">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="preload" href="/fonts/titillium-web-v9-latin-200.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/titillium-web-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/titillium-web-v9-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/titillium-web-v9-latin-200.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="/fonts/titillium-web-v9-latin-regular.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="/fonts/titillium-web-v9-latin-600.woff" as="font" type="font/woff" crossorigin>
+<meta name="description" content="A release countdown for teams that want to track the remaining time for something to be published. Also usable for other countdown needs...">
+<meta name="page-topic" content="A Countdown Web-App">
+<meta name="page-type" content="website">
+<meta name="author" content="https://github.com/manuelfeller">
+<meta name="publisher" content="https://github.com/manuelfeller">
+<meta name="copyright" content="https://github.com/manuelfeller">
+<meta name="audience" content="all">
+<meta name="robots" content="INDEX, FOLLOW">
+<meta name="generator" content="Handwritten VS Code">
+<meta property="og:title" content="Manu's Release Countdown" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://countdown.devsvr.ws/" />
+<meta property="og:image" content="https://countdown.devsvr.ws/images/screenshot.png" />
+<meta property="og:image:secure_url" content="https://countdown.devsvr.ws/images/screenshot.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="A screenshot of the countdown, taken in dark mode..." />
+<meta property="og:locale" content="en-US" />
+<meta property="og:description" content="A release countdown for teams that want to track the remaining time for something to be published. Also usable for other countdown needs..." />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@manuelfeller">
+<meta name="twitter:title" content="Manu's (BI X) Release Countdown">
+<meta name="twitter:description" content="A release countdown for teams that want to track the remaining time for something to be published. Also usable for other countdown needs...">
+<meta name="twitter:image" content="https://countdown.devsvr.ws/images/screenshot.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" href="/images/icon-32.png" type="image/png">
+<link rel="apple-touch-icon" sizes="48x48" href="/images/icon-48.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/icon-72.png">
+<link rel="apple-touch-icon" sizes="96x96" href="/images/icon-96.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/icon-144.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/images/icon-192.png">
+<link rel="apple-touch-icon" sizes="256x256" href="/images/icon-256.png">
+<link rel="apple-touch-icon" sizes="384x384" href="/images/icon-384.png">
+<link rel="apple-touch-icon" sizes="512x512" href="/images/icon-512.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/images/icon-57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/icon-60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/icon-72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/icon-76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/icon-114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/icon-120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/icon-144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/icon-152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icon-180.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/icon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/images/icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#dddade">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="white">
+<meta name="msapplication-TileImage" content="/images/icon-144.png">
+<meta name="msapplication-TileColor" content="#dddade">
+<script defer="defer" src="bundle.js"></script>
+</head>
+<body>
+<div class="fullSize">
+  <div id="setup" class="setupContainer">
+    
+    <div class="setupItems">
+      <div class="setupFullWidth">
+        <h1>Setup your countdown:</h1>
+      </div>
+      <div class="setupLeftColumn">
+        <label for="cntdate">Date:</label><br/>
+        <input id="cntdate" type="date" min="2021-04-16" placeholder="yyyy-mm-dd"/>
+      </div>
+
+      <div class="setupRightColumns">
+        <label for="cnttime">Time:</label><br/>
+        <input id="cnttime" type="time" placeholder="hh:mm"/>
+      </div>
+
+      <div class="setupLeftColumn">
+        <label for="cntname">Project / Release Name:</label><br/>
+        <input id="cntname" type="text" placeholder="next release" />
+      </div>
+
+      <div class="setupRightColumns">
+        <label for="cntdone">Completed Message:</label><br/>
+        <input id="cntdone" type="text" placeholder="Get it out!" />
+      </div>
+      <div class="setupCenterColumns">
+        <label for="themeToggle">Toggle color theme:</label><br/>
+        <button id="themeToggle" title="Toggle between light and dark theme">light 🌞 &nbsp; ↔️ &nbsp; 🌚 dark</button><br/>
+        <span class="setupHintText">(Color theme settings are saved immediately)</span>
+      </div>
+      <div class="setupCenterColumns">
+        &nbsp;
+      </div>
+      <div class="setupLeftColumn">
+        <button id="setConfig" title="Start the countdown with the current settings">🚀 Start Countdown</button>
+      </div>
+
+      <div class="setupRightColumns">
+        <button id="cancelConfig" title="Close settings and return to the running countdown">❎ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="countdown" class="countdownViewLayout">
+    <div class="countdownViewRowOne">
+      <h1>Time until <span id="projectname">???</span>:</h1>
+    </div>
+    <div class="countdownViewRowTwo">
+      <div id="clockdiv">
+        <div>
+          <span class="days" id="day">?</span>
+          <div class="smalltext">Days</div>
+        </div>
+        <div>
+          <span class="hours" id="hour">?</span>
+          <div class="smalltext">Hours</div>
+        </div>
+        <div>
+          <span class="minutes" id="minute">?</span>
+          <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+          <span class="seconds" id="second">?</span>
+          <div class="smalltext">Seconds</div>
+        </div>
+      </div>
+    </div>
+    <div class="countdownViewRowThree">
+      <p id="doneMessage" class="finishedText"></p>
+    </div>
+    <div class="countdownViewRowFour">
+      <div class="countdownViewFooterColumnOne">
+        <div class="logoHolderManu" title="coded by Manuel &quot;码奴&quot; Feller (GitHub @manuelfeller)">
+          <a href="https://github.com/ManuelFeller/release-countdown" aria-label="Link to the source code repository of this web app">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.73 214.02">
+              <line class="logoManuLineStyle" x1="15.34" y1="25.69" x2="15.34" y2="192.36"></line>
+              <line class="logoManuLineStyle" x1="165.7" y1="25.69" x2="165.7" y2="102.8"></line>
+              <line class="logoManuLineStyle" x1="158.78" y1="23.61" x2="99.82" y2="82.57"></line>
+              <circle class="logoManuLineStyle" cx="15.34" cy="15.34" r="10.34"></circle>
+              <circle class="logoManuLineStyle" cx="15.34" cy="198.68" r="10.34"></circle>
+              <circle class="logoManuLineStyle" cx="165.7" cy="15.34" r="10.34"></circle>
+              <circle class="logoManuLineStyle" cx="324.38" cy="15.34" r="10.34"></circle>
+              <circle class="logoManuLineStyle" cx="91.84" cy="90.14" r="10.34"></circle>
+              <circle class="logoManuLineStyle" cx="42.45" cy="40.78" r="10.34"></circle>
+              <circle class="logoManuLineStyle" cx="66.96" cy="65.3" r="10.34"></circle>
+              <line class="logoManuLineStyle" x1="49.77" y1="48.1" x2="59.65" y2="57.98"></line>
+              <circle class="logoManuLineStyle" cx="165.7" cy="198.68" r="10.34"></circle>
+              <circle class="logoManuLineStyle" cx="165.7" cy="113.14" r="10.34"></circle>
+              <circle class="logoManuLineStyle" cx="165.7" cy="148.84" r="10.34"></circle>
+              <line class="logoManuLineStyle" x1="165.7" y1="159.18" x2="165.7" y2="188.33"></line>
+              <circle class="logoManuLineStyle" cx="217.78" cy="198.68" r="10.34"></circle>
+              <polyline class="logoManuLineStyle" points="217.78 189.08 217.78 127.71 233.88 112.59 264.34 112.59"></polyline>
+              <circle class="logoManuLineStyle" cx="274.01" cy="113.14" r="10.34"></circle>
+              <polyline class="logoManuLineStyle" points="221.73 72.68 221.73 30.31 237.82 15.2 314.28 15.2"></polyline>
+              <circle class="logoManuLineStyle" cx="221.73" cy="82.57" r="10.34"></circle>
+              <path class="logoManuLineStyle" d="M16.22-12.3" transform="translate(-0.87 -1.18)"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="countdownViewFooterColumnTwo">
+        <button id="restart" title="Show or change the setting for the current countdown">⚙️ Settings</button>
+      </div>
+      <div class="countdownViewFooterColumnThree">
+        <button id="share" title="Generate a shareable link to this countdown">🔗 Share</button>
+      </div>
+      <div class="countdownViewFooterColumnFour">
+        &nbsp; <!-- logo placeholder -->
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
