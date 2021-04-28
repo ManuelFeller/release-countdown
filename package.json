@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A small website that provides you with a release countdown",
   "scripts": {
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "build": "webpack build"
   },
   "author": "Manuel Feller",
   "license": "MIT",
