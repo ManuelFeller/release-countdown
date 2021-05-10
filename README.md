@@ -11,7 +11,8 @@ Countdown in dark mode
 ![Screenshot Dark Version](imagework/screenshot_light.png)
 Countdown in light mode
 
-You can see it in action at https://countdown.devsvr.ws - no tracking is happening there (I have disabled all logs on the server side).
+You can see it in action at https://countdown.devsvr.ws - no tracking is happening there (I have disabled all logs on the server side).  
+![Website Status](https://img.shields.io/website?down_color=red&down_message=offline&up_color=blue&up_message=online&url=https%3A%2F%2Fcountdown.devsvr.ws) ![Security Headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fcountdown.devsvr.ws)
 
 Beside date and time when the countdown should be over you can customize the name of the release (the "next release" is the part that is then replaced with your text) and the text that is displayed once the countdown reached zero.
 
