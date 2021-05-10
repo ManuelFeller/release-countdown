@@ -1,3 +1,5 @@
+![MIT License](https://img.shields.io/github/license/manuelfeller/release-countdown) ![Language Count](https://img.shields.io/github/languages/count/manuelfeller/release-countdown) ![Top Language](https://img.shields.io/github/languages/top/manuelfeller/release-countdown) ![Code Size](https://img.shields.io/github/languages/code-size/manuelfeller/release-countdown) ![Repo Size](https://img.shields.io/github/repo-size/manuelfeller/release-countdown)
+
 # Manu's Release Countdown
 
 This is a small script that implements a release countdown in pure HTML, CSS and JS.  
