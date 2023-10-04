@@ -1,9 +1,17 @@
+import DOMPurify from "dompurify";
 import './styles.css';
 
 // Default export
 function app() {
 
   // define functions
+
+  const readPurifiedValue = (value) => {
+    return DOMPurify.sanitize(value, {
+      USE_PROFILES: { html: false, mathMl: false, svg: false },
+    });
+  } 
+
   const getCurrentColorMode = () => {
     const currentMode = localStorage.getItem('colorMode');
     if (currentMode === null) {
@@ -88,37 +96,37 @@ function app() {
     // project name
     let projName = url.searchParams.get('p');
     if (projName !== null) {
-      newConfig.project = projName;
+      newConfig.project = readPurifiedValue(projName);
     }
 
     let cntDoneMessage = url.searchParams.get('msg');
     if (cntDoneMessage !== null) {
-      newConfig.doneMsg = cntDoneMessage;
+      newConfig.doneMsg = readPurifiedValue(cntDoneMessage);
     }
 
     let year = url.searchParams.get('y');
     if (year !== null) {
-      newConfig.year = year;
+      newConfig.year = readPurifiedValue(year);
     }
 
     let month = url.searchParams.get('m');
     if (month !== null) {
-      newConfig.month = month;
+      newConfig.month = readPurifiedValue(month);
     }
 
     let day = url.searchParams.get('d');
     if (day !== null) {
-      newConfig.day = day;
+      newConfig.day = readPurifiedValue(day);
     }
 
     let hour = url.searchParams.get('h');
     if (hour !== null) {
-      newConfig.hour = hour;
+      newConfig.hour = readPurifiedValue(hour);
     }
 
     let minute = url.searchParams.get('min');
     if (minute !== null) {
-      newConfig.minute = minute;
+      newConfig.minute = readPurifiedValue(minute);
     }
 
     // save new time for deadline
@@ -183,10 +191,10 @@ function app() {
   const saveAndApplyConfig = () => {
     let errors = '';
     // read input fields
-    const projectNameValue = document.getElementById("cntname").value;
-    const finishedTextValue = document.getElementById("cntdone").value;
-    const deadlineDateValue = document.getElementById("cntdate").value;
-    const deadlineTimeValue = document.getElementById("cnttime").value;
+    const projectNameValue = readPurifiedValue(document.getElementById("cntname").value);
+    const finishedTextValue = readPurifiedValue(document.getElementById("cntdone").value);
+    const deadlineDateValue = readPurifiedValue(document.getElementById("cntdate").value);
+    const deadlineTimeValue = readPurifiedValue(document.getElementById("cnttime").value);
     // init missing check
     let hasMissing = false;
     let tempTestConfig = getEmptyConfigObject();
@@ -293,9 +301,9 @@ function app() {
 
   const startCountdown = (configObject) => {
     stopFinishedAnimations();
-    document.getElementById("projectname").innerHTML = configObject.project;
+    document.getElementById("projectname").innerHTML = readPurifiedValue(configObject.project);
     document.getElementById("doneMessage").style.visibility = 'hidden';
-    document.getElementById("doneMessage").innerHTML = configObject.doneMsg;
+    document.getElementById("doneMessage").innerHTML = readPurifiedValue(configObject.doneMsg);
     document.getElementById("countdown").style.display = null;
     const deadline = new Date(Date.UTC(configObject.year, (configObject.month - 1), configObject.day, configObject.hour, configObject.minute)).getTime();
     intervalReference = setInterval(function() {
@@ -331,7 +339,6 @@ function app() {
     if (savedConfig === null) {
       alert("There is no configured Countdown to share...");
     } else {
-      const pageUrl = new URL(window.location);
       const configObject = JSON.parse(savedConfig);
       const shareUrl = window.location.origin.concat(
         window.location.pathname,
