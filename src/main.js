@@ -6,7 +6,7 @@ function app() {
 
   // define functions
 
-  readPurifiedValue = (value) => {
+  const readPurifiedValue = (value) => {
     return DOMPurify.sanitize(value, {
       USE_PROFILES: { html: false, mathMl: false, svg: false },
     });
@@ -339,7 +339,6 @@ function app() {
     if (savedConfig === null) {
       alert("There is no configured Countdown to share...");
     } else {
-      const pageUrl = new URL(window.location);
       const configObject = JSON.parse(savedConfig);
       const shareUrl = window.location.origin.concat(
         window.location.pathname,
